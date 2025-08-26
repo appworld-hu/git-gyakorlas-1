@@ -1,0 +1,13 @@
+name: Simple Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kód letöltése
+        uses: actions/checkout@v2
+
+      - name: Fájl ellenőrzés
+        run: ls -la
