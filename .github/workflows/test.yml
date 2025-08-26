@@ -11,3 +11,9 @@ jobs:
 
       - name: Fájl ellenőrzés
         run: ls -la
+
+      - name: Build step
+        run: |
+          mkdir build
+          cp index.html build/
+          cp style.css build/
