@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0   # fontos, hogy az összes branch elérhető legyen
+          persist-credentials: true   # ← ez kell, hogy a bot tokenje működjön
 
       # 2️⃣ Build mappa létrehozása
       - name: Build website
