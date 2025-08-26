@@ -1,35 +1,26 @@
-name: Deploy to GitHub Pages
+name: Simple Test
 
-# Minden push-ra lefut a master ágon
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Kód letöltése a repo-ból
-      - name: Checkout repository
+      - name: Kód letöltése
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0   # fontos, hogy az összes branch elérhető legyen
-          persist-credentials: true   # ← ez kell, hogy a bot tokenje működjön
 
-      # 2️⃣ Build mappa létrehozása
-      - name: Build website
+      - name: Fájl ellenőrzés
+        run: ls -la
+
+      - name: Build step
         run: |
-          mkdir -p build
+          mkdir build
           cp index.html build/
           cp style.css build/
-          echo "Ez egy automatikusan generált oldal a GitHub Actions által." >> build/index.html
 
-      # 3️⃣ GitHub Pages-re deploy
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          publish_branch: gh-pages
+          publish_dir: ./build          
+          publish_branch: gh-pages   # ← ide kell hozzáadni 
